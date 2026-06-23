@@ -1,11 +1,11 @@
-import { ChangeEvent, useState } from 'react';
-import { formatCurrency, formatNumber } from '../../lib/utils';
-import { Calculator } from 'lucide-react';
+import { ChangeEvent } from 'react';
+import { formatCurrency, formatNumber, useLocalStorage } from '../../lib/utils';
 import SEO from '../../components/SEO';
 import Disclaimer from '../../components/Disclaimer';
+import FinancialSummaryBar from '../../components/FinancialSummaryBar';
 
 export default function FeedCalculator() {
-  const [inputs, setInputs] = useState({
+  const [inputs, setInputs] = useLocalStorage('aqua-feed-calculator-inputs', {
     totalAnimalsStocked: 5000,
     survivalRate: 85, // percentage
     targetHarvestWeightKg: 0.5,
@@ -26,78 +26,74 @@ export default function FeedCalculator() {
   const totalFeedCost = (totalFeedRequiredKg / 1000) * inputs.feedCostPerTon;
 
   return (
-    <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-8">
-      <SEO 
-        title="Feed & FCR Calculator" 
-        description="Model feed conversion ratio, feed consumption, and total feed cost for an aquaculture grow-out cycle."
-        keywords="aquaculture feed calculator, FCR calculator, feed conversion ratio, fish feed cost"
+    <>
+      <FinancialSummaryBar 
+        totalCost={totalFeedCost}
       />
-      <div className="flex-1 space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">Feed & FCR Calculator</h1>
-          <p className="text-slate-600">Model feed requirements based on target growth, survival, and conversion efficiency.</p>
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 px-4 sm:px-6">
+        <SEO 
+          title="Feed & FCR Calculator" 
+          description="Model feed conversion ratio, feed consumption, and total feed cost for an aquaculture grow-out cycle."
+          keywords="aquaculture feed calculator, FCR calculator, feed conversion ratio, fish feed cost"
+        />
+        <div className="flex-1 space-y-6">
+          <div>
+            <h1 className="text-3xl font-medium text-slate-900 dark:text-slate-100 mb-2 transition-colors">Feed & FCR Calculator</h1>
+            <p className="text-slate-600 dark:text-slate-400 transition-colors">Model feed requirements based on target growth, survival, and conversion efficiency.</p>
+          </div>
+
+          <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 space-y-4 transition-colors">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Total Animals Stocked</label>
+                <input type="number" name="totalAnimalsStocked" value={inputs.totalAnimalsStocked} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Estimated Survival (%)</label>
+                <input type="number" name="survivalRate" value={inputs.survivalRate} onChange={handleInputChange} min="0" max="100" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Initial Weight (kg/animal)</label>
+                <input type="number" name="initialWeightKg" value={inputs.initialWeightKg} onChange={handleInputChange} min="0" step="0.01" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Target Harvest Wt (kg/animal)</label>
+                <input type="number" name="targetHarvestWeightKg" value={inputs.targetHarvestWeightKg} onChange={handleInputChange} min="0" step="0.01" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Feed Conversion Ratio (FCR)</label>
+                <input type="number" name="fcr" value={inputs.fcr} onChange={handleInputChange} min="0.1" step="0.1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Feed Cost per Ton ($)</label>
+                <input type="number" name="feedCostPerTon" value={inputs.feedCostPerTon} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Total Animals Stocked</label>
-              <input type="number" name="totalAnimalsStocked" value={inputs.totalAnimalsStocked} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-500" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Estimated Survival (%)</label>
-              <input type="number" name="survivalRate" value={inputs.survivalRate} onChange={handleInputChange} min="0" max="100" className="w-full rounded-lg border-slate-300 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-500" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Initial Weight (kg/animal)</label>
-              <input type="number" name="initialWeightKg" value={inputs.initialWeightKg} onChange={handleInputChange} min="0" step="0.01" className="w-full rounded-lg border-slate-300 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-500" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Target Harvest Wt (kg/animal)</label>
-              <input type="number" name="targetHarvestWeightKg" value={inputs.targetHarvestWeightKg} onChange={handleInputChange} min="0" step="0.01" className="w-full rounded-lg border-slate-300 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-500" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Feed Conversion Ratio (FCR)</label>
-              <input type="number" name="fcr" value={inputs.fcr} onChange={handleInputChange} min="0.1" step="0.1" className="w-full rounded-lg border-slate-300 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-500" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Feed Cost per Ton ($)</label>
-              <input type="number" name="feedCostPerTon" value={inputs.feedCostPerTon} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-500" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full md:w-80">
-        <div className="bg-slate-900 text-white rounded-2xl p-6 shadow-md sticky top-24">
-          <div className="flex items-center gap-3 mb-6 border-b border-slate-700 pb-4">
-            <Calculator className="w-6 h-6 text-teal-400" />
-            <h3 className="text-xl font-semibold">Feed Breakdown</h3>
-          </div>
-          
-          <div className="space-y-4 text-sm mb-6">
-            <div className="flex justify-between items-center">
-              <span className="text-slate-400">Total Biomass Gain</span>
-              <span className="font-semibold">{formatNumber(totalBiomassGainKg)} kg</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-slate-400">Total Feed Required</span>
-              <span className="font-semibold">{formatNumber(totalFeedRequiredKg)} kg</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-slate-400">Feed Cost / kg Gain</span>
-              <span className="font-semibold">{formatCurrency(inputs.feedCostPerTon / 1000 * inputs.fcr)}</span>
+        <div className="w-full lg:w-[400px] space-y-6 pt-0 lg:pt-16">
+          <div className="bg-[#f8fffe] dark:bg-slate-900 p-6 rounded-xl border border-teal-700 transition-colors">
+            <h3 className="font-medium text-teal-700 dark:text-teal-400 mb-4 whitespace-nowrap transition-colors">Feed Breakdown</h3>
+            <div className="grid grid-cols-1 gap-4">
+              <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors flex justify-between items-center">
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider transition-colors">Total Biomass Gain</p>
+                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatNumber(totalBiomassGainKg)} kg</p>
+              </div>
+              <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors flex justify-between items-center">
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider transition-colors">Total Feed Required</p>
+                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatNumber(totalFeedRequiredKg)} kg</p>
+              </div>
+              <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors flex justify-between items-center">
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider transition-colors">Feed Cost / kg Gain</p>
+                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatCurrency(inputs.feedCostPerTon / 1000 * inputs.fcr)}</p>
+              </div>
             </div>
           </div>
 
-          <div className="border-t border-slate-700 pt-4">
-            <p className="text-slate-400 text-xs mb-1 uppercase tracking-wider font-semibold">Total Feed Cycle Cost</p>
-            <p className="text-3xl font-bold text-teal-400">{formatCurrency(totalFeedCost)}</p>
-          </div>
-          
-          <Disclaimer variant="dark" />
+          <Disclaimer variant="light" />
         </div>
       </div>
-    </div>
+    </>
   );
 }

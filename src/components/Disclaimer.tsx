@@ -21,7 +21,7 @@ export default function Disclaimer({ customText, className = '', variant = 'ligh
         <strong>Disclaimer:</strong> {customText ? customText.replace(/^Disclaimer:\s*/, '') : defaultDisclaimerText.replace(/^Disclaimer:\s*/, '')}
       </p>
       <div className={`mt-2 ${isDark ? 'text-teal-400' : 'text-teal-600'} hover:underline`}>
-        <Link to="/legal">Read full legal disclaimer</Link>
+        <a href="https://www.ruralutilitycost.com/disclaimer" target="_blank" rel="noopener noreferrer">Read full legal disclaimer</a>
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
-import { ChangeEvent, useState } from 'react';
-import { formatNumber } from '../../lib/utils';
-import { Calculator } from 'lucide-react';
+import { ChangeEvent } from 'react';
+import { formatNumber, useLocalStorage } from '../../lib/utils';
 import SEO from '../../components/SEO';
 import Disclaimer from '../../components/Disclaimer';
+import FinancialSummaryBar from '../../components/FinancialSummaryBar';
 
 export default function HarvestCalculator() {
-  const [inputs, setInputs] = useState({
+  const [inputs, setInputs] = useLocalStorage('aqua-harvest-calculator-inputs', {
     areaVolume: 10, // units
     stockingDensity: 500, // per unit
     survivalRate: 80, // %
@@ -22,67 +22,64 @@ export default function HarvestCalculator() {
   const totalHarvestYieldKg = totalSurvivors * inputs.averageHarvestWeightKg;
 
   return (
-    <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-8">
-      <SEO 
-        title="Harvest & Biomass Estimator" 
-        description="Estimate harvesting outcomes including survival rates, net harvest weight, and total facility biomass."
-        keywords="aquaculture harvest calculator, fish biomass estimator, stocking density to harvest, fish survival rate"
-      />
-      <div className="flex-1 space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">Harvest & Survival</h1>
-          <p className="text-slate-600">Estimate total harvest output based on stocking densities and anticipated mortality.</p>
+    <>
+      <FinancialSummaryBar />
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 px-4 sm:px-6">
+        <SEO 
+          title="Harvest & Biomass Estimator" 
+          description="Estimate harvesting outcomes including survival rates, net harvest weight, and total facility biomass."
+          keywords="aquaculture harvest calculator, fish biomass estimator, stocking density to harvest, fish survival rate"
+        />
+        <div className="flex-1 space-y-6">
+          <div>
+            <h1 className="text-3xl font-medium text-slate-900 dark:text-slate-100 mb-2 transition-colors">Harvest & Survival</h1>
+            <p className="text-slate-600 dark:text-slate-400 transition-colors">Estimate total harvest output based on stocking densities and anticipated mortality.</p>
+          </div>
+
+          <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 transition-colors">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Production Area/Volume</label>
+                <input type="number" name="areaVolume" value={inputs.areaVolume} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Stocking Density / Unit</label>
+                <input type="number" name="stockingDensity" value={inputs.stockingDensity} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Survival Rate (%)</label>
+                <input type="number" name="survivalRate" value={inputs.survivalRate} onChange={handleInputChange} min="0" max="100" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Avg. Harvest Wt. (kg)</label>
+                <input type="number" name="averageHarvestWeightKg" value={inputs.averageHarvestWeightKg} onChange={handleInputChange} min="0" step="0.1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Production Area/Volume</label>
-              <input type="number" name="areaVolume" value={inputs.areaVolume} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-500" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Stocking Density / Unit</label>
-              <input type="number" name="stockingDensity" value={inputs.stockingDensity} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-500" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Survival Rate (%)</label>
-              <input type="number" name="survivalRate" value={inputs.survivalRate} onChange={handleInputChange} min="0" max="100" className="w-full rounded-lg border-slate-300 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-500" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Avg. Harvest Wt. (kg)</label>
-              <input type="number" name="averageHarvestWeightKg" value={inputs.averageHarvestWeightKg} onChange={handleInputChange} min="0" step="0.1" className="w-full rounded-lg border-slate-300 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-500" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full md:w-80">
-        <div className="bg-slate-900 text-white rounded-2xl p-6 shadow-md sticky top-24">
-          <div className="flex items-center gap-3 mb-6 border-b border-slate-700 pb-4">
-            <Calculator className="w-6 h-6 text-teal-400" />
-            <h3 className="text-xl font-semibold">Yield Breakdown</h3>
-          </div>
-          
-          <div className="space-y-4 text-sm mb-6">
-            <div className="flex justify-between items-center">
-              <span className="text-slate-400">Total Stocked</span>
-              <span className="font-semibold">{formatNumber(totalStocked)}</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-slate-400">Estimated Survivors</span>
-              <span className="font-semibold">{formatNumber(totalSurvivors)}</span>
+        <div className="w-full lg:w-[400px] space-y-6 pt-0 lg:pt-16">
+          <div className="bg-[#f8fffe] dark:bg-slate-900 p-6 rounded-xl border border-teal-700 transition-colors">
+            <h3 className="font-medium text-teal-700 dark:text-teal-400 mb-4 whitespace-nowrap transition-colors">Yield Breakdown</h3>
+            <div className="grid grid-cols-1 gap-4">
+              <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors flex justify-between items-center">
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider transition-colors">Total Stocked</p>
+                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatNumber(totalStocked)}</p>
+              </div>
+              <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors flex justify-between items-center">
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider transition-colors">Estimated Survivors</p>
+                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatNumber(totalSurvivors)}</p>
+              </div>
+              <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors flex justify-between items-center">
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider transition-colors">Total Harvest Yield</p>
+                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatNumber(totalHarvestYieldKg)} kg</p>
+              </div>
             </div>
           </div>
 
-          <div className="border-t border-slate-700 pt-4">
-            <p className="text-slate-400 text-xs mb-1 uppercase tracking-wider font-semibold">Total Harvest Yield</p>
-            <p className="text-3xl font-bold text-teal-400">{formatNumber(totalHarvestYieldKg)} kg</p>
-            <p className="text-xs text-slate-500 mt-2">({formatNumber(totalHarvestYieldKg * 2.20462)} lbs)</p>
-          </div>
-          
-          <Disclaimer variant="dark" />
+          <Disclaimer variant="light" />
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,6 +1,8 @@
 # Aqua - Rural Utility Cost
 
-**Aqua** is the aquaculture and water-production economics hub for ruralutilitycost.com. It provides decision-support tools for fish farms, ponds, tanks, and aquaponics, helping operators estimate startup costs, track feed efficiency, and model financial scenarios.
+**Aqua** is the aquaculture and water-production economics hub for aqua.ruralutilitycost.com. It provides decision-support tools for fish farms, ponds, tanks, and aquaponics, helping operators estimate startup costs, track feed efficiency, and model financial scenarios.
+
+**GitHub Repository:** [https://github.com/dsgiri/ruralutilitycost-aqua](https://github.com/dsgiri/ruralutilitycost-aqua)
 
 ## Features
 - **Aqua Cost Estimator**: Model upfront capital requirements and variable costs.

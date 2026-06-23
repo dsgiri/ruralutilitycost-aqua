@@ -1,6 +1,6 @@
 {
   "name": "Aqua",
-  "description": "Aquaculture and water-production economics hub for ruralutilitycost.com",
+  "description": "Aquaculture and water-production economics hub for aqua.ruralutilitycost.com",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

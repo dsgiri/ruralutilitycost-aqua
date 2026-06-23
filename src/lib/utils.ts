@@ -30,16 +30,38 @@ export function useFavorites() {
   return { favorites, toggleFavorite, isFavorite };
 }
 
+export function useLocalStorage<T>(key: string, initialValue: T) {
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.warn(`Error reading localStorage key "${key}":`, error);
+      return initialValue;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(key, JSON.stringify(storedValue));
+    } catch (error) {
+      console.warn(`Error setting localStorage key "${key}":`, error);
+    }
+  }, [key, storedValue]);
+
+  return [storedValue, setStoredValue] as const;
+}
+
 export function formatCurrency(value: number): string {
-  return new Intl.NumberFormat('en-US', {
+  return value.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
-    maximumFractionDigits: 0,
-  }).format(value);
+  });
 }
 
 export function formatNumber(value: number): string {
-  return new Intl.NumberFormat('en-US', {
+  return value.toLocaleString('en-US', {
+    minimumFractionDigits: 1,
     maximumFractionDigits: 1,
-  }).format(value);
+  });
 }
