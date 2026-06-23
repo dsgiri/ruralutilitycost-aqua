@@ -33,17 +33,17 @@ export default function ProfitCalculator() {
         netProfit={grossProfit}
         breakeven={breakevenCostPerKg}
       />
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 px-4 sm:px-6">
-        <SEO 
-          title="Aquaculture Profit Calculator" 
-          description="Analyze overall cycle profitability, gross margin, net revenue, and crucial breakeven metrics for farm viability."
-          keywords="aquaculture profit calculator, fish farm breakeven cost, gross margin aquaculture, target ROI fish farming"
-        />
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 px-4 sm:px-6 py-6">
         <div className="flex-1 space-y-6">
-          <div>
+          <header>
+            <SEO 
+              title="Aquaculture Profit Calculator" 
+              description="Analyze overall cycle profitability, gross margin, net revenue, and crucial breakeven metrics for farm viability."
+              keywords="aquaculture profit calculator, fish farm breakeven cost, gross margin aquaculture, target ROI fish farming"
+            />
             <h1 className="text-3xl font-medium text-slate-900 dark:text-slate-100 mb-2 transition-colors">Profit & Breakeven</h1>
             <p className="text-slate-600 dark:text-slate-400 transition-colors">Analyze overall cycle profitability, margins, and your critical breakeven points.</p>
-          </div>
+          </header>
 
           <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 transition-colors">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

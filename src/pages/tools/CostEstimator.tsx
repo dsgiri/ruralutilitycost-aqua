@@ -35,17 +35,17 @@ export default function CostEstimator() {
       <FinancialSummaryBar 
         totalCost={totalCost}
       />
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 px-4 sm:px-6">
-        <SEO 
-          title="Aqua Cost Estimator" 
-          description="Estimate total startup, variable, and overhead costs for your production system. Evaluate equipment, licensing, energy and labor."
-          keywords="aquaculture startup cost, fish farming cost estimator, pond culture costs, RAS cost"
-        />
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 px-4 sm:px-6 py-6">
         <div className="flex-1 space-y-6">
-          <div>
+          <header>
+            <SEO 
+              title="Aqua Cost Estimator" 
+              description="Estimate total startup, variable, and overhead costs for your production system. Evaluate equipment, licensing, energy and labor."
+              keywords="aquaculture startup cost, fish farming cost estimator, pond culture costs, RAS cost"
+            />
             <h1 className="text-3xl font-medium text-slate-900 dark:text-slate-100 mb-2 transition-colors">Aqua Cost Estimator</h1>
             <p className="text-slate-600 dark:text-slate-400 transition-colors">Model your upfront capital requirements and baseline variable costs per cycle.</p>
-          </div>
+          </header>
 
           <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 space-y-4 transition-colors">
             <h2 className="text-xl font-medium text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-2 transition-colors">System Parameters</h2>

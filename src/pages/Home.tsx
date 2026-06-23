@@ -36,7 +36,7 @@ export default function Home() {
 
       <section className="flex-1 space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100 transition-colors">Planning Tools</h2>
+          <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100 transition-colors">Planning Tools</h1>
           <div className="flex space-x-2">
             <span className="px-3 py-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-300 rounded-full text-xs font-semibold transition-colors">
               {TOOLS.length} Tools Available

@@ -14,7 +14,7 @@ export default function SEO({ title, description, keywords }: SEOProps) {
 
   return (
     <Helmet>
-      <title>{`${title} - Optimized for search`}</title>
+      <title>{`${title} | Aqua by Rural Utility Cost`}</title>
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="author" content={siteName} />
