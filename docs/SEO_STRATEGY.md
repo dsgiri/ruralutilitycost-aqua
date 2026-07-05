@@ -10,9 +10,9 @@
 
 ## Meta Formulas
 Each page uses the `<SEO>` component:
-- **Title**: `[Tool Name] - Optimized for search` (Appended globally) / `[Tool Name] | Aqua by Rural Utility Cost`
+- **Title**: `[Tool Name] - Optimized for search` (Appended globally) / `[Tool Name] | Aqua by Rural Ops Tools`
 - **Description**: 150-160 characters describing the tool's exact function.
-- **Canonical URL**: Self-referencing full URL (`https://aqua.ruralutilitycost.com/...`).
+- **Canonical URL**: Self-referencing full URL (`https://aqua.ruralopstools.com/...`).
 
 ## Schema Specs (JSON-LD)
 Implemented globally in `<SEO>` component:

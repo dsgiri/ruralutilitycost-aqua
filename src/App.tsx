@@ -40,7 +40,7 @@ export default function App() {
             <Route path="about" element={<About />} />
             <Route path="legal" element={<Legal />} />
             
-            {/* Shared generic pages for Rural Utility Cost mapping */}
+            {/* Shared generic pages for Rural Ops Tools mapping */}
             <Route path="contact" element={<GenericPage title="Contact Us" />} />
             <Route path="privacy" element={<GenericPage title="Privacy Policy" />} />
             <Route path="terms" element={<GenericPage title="Terms of Service" />} />

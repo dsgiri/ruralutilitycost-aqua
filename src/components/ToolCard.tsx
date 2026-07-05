@@ -46,11 +46,11 @@ export default function ToolCard({ tool }: ToolCardProps) {
 
       <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-colors">
         <div className="text-xs text-slate-400 dark:text-slate-500 transition-colors">
-          Outcome: <span className="font-semibold text-slate-700 dark:text-slate-300 text-sm whitespace-nowrap transition-colors">{tool.primaryOutcome}</span>
+          Outcome: <br className="hidden sm:block lg:hidden" /><span className="font-semibold text-slate-700 dark:text-slate-300 text-sm transition-colors">{tool.primaryOutcome}</span>
         </div>
         <Link 
           to={tool.path}
-          className="bg-teal-600 dark:bg-teal-700 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-teal-700 dark:hover:bg-teal-600 text-center w-full sm:w-auto transition-colors"
+          className="bg-teal-600 dark:bg-teal-700 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-teal-700 dark:hover:bg-teal-600 text-center w-full sm:w-auto flex-shrink-0 whitespace-nowrap transition-colors"
         >
           Launch Tool
         </Link>

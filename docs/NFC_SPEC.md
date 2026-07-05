@@ -8,6 +8,6 @@
 
 ## Tap-Page Behavior
 - When an operator taps a tagged tank/pond:
-  1. Opens a dynamic URL: `https://aqua.ruralutilitycost.com/asset/{id}`.
+  1. Opens a dynamic URL: `https://aqua.ruralopstools.com/asset/{id}`.
   2. Displays current stocking density, feeding schedule, and last FCR check.
   3. Provides quick links to the `FeedCalculator` pre-filled with the asset's data.

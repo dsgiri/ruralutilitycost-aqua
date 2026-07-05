@@ -1,7 +1,7 @@
 # Product Requirements Document (PRD)
 
 ## Product Vision
-Aqua is a specialized subdomain of Rural Utility Cost dedicated to providing a water-production economics and decision-support hub for aquaculture, fish farms, ponds, tanks, shellfish, and aquaponics.
+Aqua is a specialized subdomain of Rural Ops Tools dedicated to providing a water-production economics and decision-support hub for aquaculture, fish farms, ponds, tanks, shellfish, and aquaponics.
 
 ## User Personas
 1. **Aquaculture Operator**: Needs to quickly calculate feed conversion ratios, startup costs, and overall profit.

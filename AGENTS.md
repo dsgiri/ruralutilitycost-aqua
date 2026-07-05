@@ -3,7 +3,7 @@
 Act as a senior engineering manager, staff software engineer, and AI coding workflow architect. This file serves as the definitive instruction set for AI coding agents to ensure consistent, high-quality, and safe repository maintenance.
 
 ## Purpose
-This repository is dedicated to the development and maintenance of the **Aqua** application, a specialized subdomain of **Rural Utility Cost** (aqua.ruralutilitycost.com) — a water-production economics and decision-support hub for aquaculture, fish farms, ponds, tanks, shellfish, and aquaponics. This file provides reusable, repo-level instructions to AI coding agents to ensure predictable, clean, and safe development.
+This repository is dedicated to the development and maintenance of the **Aqua** application, a specialized subdomain of **Rural Ops Tools** (aqua.ruralopstools.com) — a water-production economics and decision-support hub for aquaculture, fish farms, ponds, tanks, shellfish, and aquaponics. This file provides reusable, repo-level instructions to AI coding agents to ensure predictable, clean, and safe development.
 
 ## Project Priorities
 - Build useful tools that solve specific, painful user workflows.

@@ -5,7 +5,7 @@ export default function About() {
       
       <div className="prose prose-slate dark:prose-invert prose-teal">
         <p className="lead text-lg text-slate-600 dark:text-slate-400 mb-4 transition-colors">
-          Aqua is the dedicated aquaculture and water-production economics hub within the Rural Utility Cost ecosystem.
+          Aqua is the dedicated aquaculture and water-production economics hub within the Rural Ops Tools ecosystem.
         </p>
         
         <p className="mb-4 text-slate-700 dark:text-slate-300 transition-colors">
@@ -24,9 +24,9 @@ export default function About() {
           <li>Run comparative scenarios to decide between different production environments.</li>
         </ul>
 
-        <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 mt-8 mb-4 transition-colors">Part of Rural Utility Cost</h2>
+        <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 mt-8 mb-4 transition-colors">Part of Rural Ops Tools</h2>
         <p className="mb-4 text-slate-700 dark:text-slate-300 transition-colors">
-          As a specialized subdomain of Rural Utility Cost, Aqua integrates agricultural production economics with water-based systems. We share the rigorous, data-first approach of our parent ecosystem, delivering trustworthy and practical interfaces free of clutter.
+          As a specialized subdomain of Rural Ops Tools, Aqua integrates agricultural production economics with water-based systems. We share the rigorous, data-first approach of our parent ecosystem, delivering trustworthy and practical interfaces free of clutter.
         </p>
       </div>
     </div>

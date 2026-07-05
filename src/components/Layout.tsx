@@ -37,8 +37,8 @@ export default function Layout() {
     };
     const pTitle = titles[location.pathname];
     document.title = pTitle
-      ? `${pTitle} | Aqua by Rural Utility Cost`
-      : "Aqua - Aquaculture Economics & Planning | Rural Utility Cost";
+      ? `${pTitle} | Aqua by Rural Ops Tools`
+      : "Aqua - Aquaculture Economics & Planning | Rural Ops Tools";
 
     // Auto-scroll to top on route change for better mobile UX
     window.scrollTo(0, 0);
@@ -58,7 +58,6 @@ export default function Layout() {
   }, [location.pathname]);
 
   const navLinks = [
-    { name: "Home", path: "/" },
     { name: "Estimate", path: "/tools/estimate" },
     { name: "Feed", path: "/tools/feed" },
     { name: "Harvest", path: "/tools/harvest" },
@@ -71,22 +70,22 @@ export default function Layout() {
     { name: "About", path: "/about", external: false },
     {
       name: "Contact",
-      path: "https://www.ruralutilitycost.com/contact",
+      path: "https://www.ruralopstools.com/contact",
       external: true,
     },
     {
       name: "Disclaimer",
-      path: "https://www.ruralutilitycost.com/disclaimer",
+      path: "https://www.ruralopstools.com/disclaimer",
       external: true,
     },
     {
       name: "Privacy",
-      path: "https://www.ruralutilitycost.com/privacy-policy",
+      path: "https://www.ruralopstools.com/privacy-policy",
       external: true,
     },
     {
       name: "Terms",
-      path: "https://www.ruralutilitycost.com/terms-of-use",
+      path: "https://www.ruralopstools.com/terms-of-use",
       external: true,
     },
   ];
@@ -103,7 +102,7 @@ export default function Layout() {
             </div>
             <div>
               <p className="text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold leading-tight">
-                Rural Utility Cost
+                Rural Ops Tools
               </p>
               <h1 className="text-xl font-extrabold text-teal-900 dark:text-teal-400 leading-tight tracking-tight">
                 Aqua
@@ -191,7 +190,7 @@ export default function Layout() {
       <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-6 py-4 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400 mt-auto transition-colors duration-200">
         <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
           <span className="font-bold text-slate-700 dark:text-slate-300 uppercase tracking-tighter">
-            aqua.ruralutilitycost.com
+            aqua.ruralopstools.com
           </span>
           <nav className="flex flex-wrap justify-center gap-4">
             {footerLinks.map((link) =>
@@ -216,7 +215,7 @@ export default function Layout() {
               ),
             )}
             <a
-              href="https://ruralutilitycost.com/"
+              href="https://ruralopstools.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-teal-600 dark:hover:text-teal-400 min-h-[48px] flex items-center transition-colors"
@@ -231,7 +230,7 @@ export default function Layout() {
           </p>
           <p>
             <a
-              href="https://www.ruralutilitycost.com/disclaimer"
+              href="https://www.ruralopstools.com/disclaimer"
               target="_blank"
               rel="noopener noreferrer"
               className="text-teal-600 dark:text-teal-500 hover:text-teal-700 dark:hover:text-teal-400 hover:underline inline-flex items-center min-h-[24px] transition-colors"

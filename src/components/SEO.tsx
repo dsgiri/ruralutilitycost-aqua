@@ -9,12 +9,12 @@ interface SEOProps {
 
 export default function SEO({ title, description, keywords }: SEOProps) {
   const location = useLocation();
-  const canonicalUrl = `https://aqua.ruralutilitycost.com${location.pathname}`;
-  const siteName = "Rural Utility Cost";
+  const canonicalUrl = `https://aqua.ruralopstools.com${location.pathname}`;
+  const siteName = "Rural Ops Tools";
 
   return (
     <Helmet>
-      <title>{`${title} | Aqua by Rural Utility Cost`}</title>
+      <title>{`${title} | Aqua by Rural Ops Tools`}</title>
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="author" content={siteName} />
