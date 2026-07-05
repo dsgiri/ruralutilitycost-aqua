@@ -69,24 +69,24 @@ export default function SystemComparison() {
                   
                   <div className="grid grid-cols-1 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Setup Cost ($)</label>
-                      <input type="number" value={scenario.setupCost} onChange={(e) => updateScenario(i, 'setupCost', e.target.value)} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                      <label htmlFor={`setupCost-${i}`} className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Setup Cost ($)</label>
+                      <input id={`setupCost-${i}`} type="number" value={scenario.setupCost} onChange={(e) => updateScenario(i, 'setupCost', e.target.value)} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Feed Cost ($)</label>
-                      <input type="number" value={scenario.feedCost} onChange={(e) => updateScenario(i, 'feedCost', e.target.value)} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                      <label htmlFor={`feedCost-${i}`} className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Feed Cost ($)</label>
+                      <input id={`feedCost-${i}`} type="number" value={scenario.feedCost} onChange={(e) => updateScenario(i, 'feedCost', e.target.value)} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Labor & Energy ($)</label>
-                      <input type="number" value={scenario.laborEnergy} onChange={(e) => updateScenario(i, 'laborEnergy', e.target.value)} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                      <label htmlFor={`laborEnergy-${i}`} className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Labor & Energy ($)</label>
+                      <input id={`laborEnergy-${i}`} type="number" value={scenario.laborEnergy} onChange={(e) => updateScenario(i, 'laborEnergy', e.target.value)} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Yield (kg)</label>
-                      <input type="number" value={scenario.predictedYieldKg} onChange={(e) => updateScenario(i, 'predictedYieldKg', e.target.value)} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                      <label htmlFor={`predictedYieldKg-${i}`} className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Yield (kg)</label>
+                      <input id={`predictedYieldKg-${i}`} type="number" value={scenario.predictedYieldKg} onChange={(e) => updateScenario(i, 'predictedYieldKg', e.target.value)} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Expected Price ($/kg)</label>
-                      <input type="number" value={scenario.expectedPrice} onChange={(e) => updateScenario(i, 'expectedPrice', e.target.value)} step="0.1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                      <label htmlFor={`expectedPrice-${i}`} className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Expected Price ($/kg)</label>
+                      <input id={`expectedPrice-${i}`} type="number" value={scenario.expectedPrice} onChange={(e) => updateScenario(i, 'expectedPrice', e.target.value)} step="0.1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
                     </div>
                   </div>
                 </div>
@@ -106,7 +106,7 @@ export default function SystemComparison() {
                 return (
                   <div key={`res-${i}`} className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors flex justify-between items-center">
                     <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider transition-colors">{scenario.name} Breakeven</p>
-                    <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatCurrency(breakeven)}/kg</p>
+                    <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatCurrency(breakeven, true)}/kg</p>
                   </div>
                 );
               })}

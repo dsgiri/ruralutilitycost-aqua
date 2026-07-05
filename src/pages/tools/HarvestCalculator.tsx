@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { formatNumber, useLocalStorage } from '../../lib/utils';
+import { formatWeight, formatCount, useLocalStorage } from '../../lib/utils';
 import SEO from '../../components/SEO';
 import Disclaimer from '../../components/Disclaimer';
 import FinancialSummaryBar from '../../components/FinancialSummaryBar';
@@ -39,20 +39,20 @@ export default function HarvestCalculator() {
           <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 transition-colors">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Production Area/Volume</label>
-                <input type="number" name="areaVolume" value={inputs.areaVolume} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="areaVolume" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Area / Volume Units</label>
+                <input id="areaVolume" type="number" name="areaVolume" value={inputs.areaVolume} onChange={handleInputChange} min="0.1" step="0.1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Stocking Density / Unit</label>
-                <input type="number" name="stockingDensity" value={inputs.stockingDensity} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="stockingDensity" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Stocking Density (per unit)</label>
+                <input id="stockingDensity" type="number" name="stockingDensity" value={inputs.stockingDensity} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Survival Rate (%)</label>
-                <input type="number" name="survivalRate" value={inputs.survivalRate} onChange={handleInputChange} min="0" max="100" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="survivalRate" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Estimated Survival (%)</label>
+                <input id="survivalRate" type="number" name="survivalRate" value={inputs.survivalRate} onChange={handleInputChange} min="0" max="100" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Avg. Harvest Wt. (kg)</label>
-                <input type="number" name="averageHarvestWeightKg" value={inputs.averageHarvestWeightKg} onChange={handleInputChange} min="0" step="0.1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="averageHarvestWeightKg" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Target Harvest Wt (kg)</label>
+                <input id="averageHarvestWeightKg" type="number" name="averageHarvestWeightKg" value={inputs.averageHarvestWeightKg} onChange={handleInputChange} min="0" step="0.01" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
             </div>
           </div>
@@ -64,15 +64,15 @@ export default function HarvestCalculator() {
             <div className="grid grid-cols-1 gap-4">
               <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors flex justify-between items-center">
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider transition-colors">Total Stocked</p>
-                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatNumber(totalStocked)}</p>
+                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatCount(totalStocked)}</p>
               </div>
               <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors flex justify-between items-center">
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider transition-colors">Estimated Survivors</p>
-                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatNumber(totalSurvivors)}</p>
+                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatCount(totalSurvivors)}</p>
               </div>
               <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors flex justify-between items-center">
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider transition-colors">Total Harvest Yield</p>
-                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatNumber(totalHarvestYieldKg)} kg</p>
+                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatWeight(totalHarvestYieldKg)} kg</p>
               </div>
             </div>
           </div>

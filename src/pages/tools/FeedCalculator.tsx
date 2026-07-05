@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { formatCurrency, formatNumber, useLocalStorage } from '../../lib/utils';
+import { formatCurrency, formatWeight, useLocalStorage } from '../../lib/utils';
 import SEO from '../../components/SEO';
 import Disclaimer from '../../components/Disclaimer';
 import FinancialSummaryBar from '../../components/FinancialSummaryBar';
@@ -45,28 +45,28 @@ export default function FeedCalculator() {
           <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 space-y-4 transition-colors">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Total Animals Stocked</label>
-                <input type="number" name="totalAnimalsStocked" value={inputs.totalAnimalsStocked} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="totalAnimalsStocked" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Total Animals Stocked</label>
+                <input id="totalAnimalsStocked" type="number" name="totalAnimalsStocked" value={inputs.totalAnimalsStocked} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Estimated Survival (%)</label>
-                <input type="number" name="survivalRate" value={inputs.survivalRate} onChange={handleInputChange} min="0" max="100" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="survivalRate" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Estimated Survival (%)</label>
+                <input id="survivalRate" type="number" name="survivalRate" value={inputs.survivalRate} onChange={handleInputChange} min="0" max="100" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Initial Weight (kg/animal)</label>
-                <input type="number" name="initialWeightKg" value={inputs.initialWeightKg} onChange={handleInputChange} min="0" step="0.01" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="initialWeightKg" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Initial Weight (kg/animal)</label>
+                <input id="initialWeightKg" type="number" name="initialWeightKg" value={inputs.initialWeightKg} onChange={handleInputChange} min="0" step="0.01" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Target Harvest Wt (kg/animal)</label>
-                <input type="number" name="targetHarvestWeightKg" value={inputs.targetHarvestWeightKg} onChange={handleInputChange} min="0" step="0.01" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="targetHarvestWeightKg" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Target Harvest Wt (kg/animal)</label>
+                <input id="targetHarvestWeightKg" type="number" name="targetHarvestWeightKg" value={inputs.targetHarvestWeightKg} onChange={handleInputChange} min="0" step="0.01" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Feed Conversion Ratio (FCR)</label>
-                <input type="number" name="fcr" value={inputs.fcr} onChange={handleInputChange} min="0.1" step="0.1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="fcr" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Feed Conversion Ratio (FCR)</label>
+                <input id="fcr" type="number" name="fcr" value={inputs.fcr} onChange={handleInputChange} min="0.1" step="0.1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Feed Cost per Ton ($)</label>
-                <input type="number" name="feedCostPerTon" value={inputs.feedCostPerTon} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="feedCostPerTon" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Feed Cost per Ton ($)</label>
+                <input id="feedCostPerTon" type="number" name="feedCostPerTon" value={inputs.feedCostPerTon} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
             </div>
           </div>
@@ -78,15 +78,15 @@ export default function FeedCalculator() {
             <div className="grid grid-cols-1 gap-4">
               <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors flex justify-between items-center">
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider transition-colors">Total Biomass Gain</p>
-                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatNumber(totalBiomassGainKg)} kg</p>
+                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatWeight(totalBiomassGainKg)} kg</p>
               </div>
               <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors flex justify-between items-center">
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider transition-colors">Total Feed Required</p>
-                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatNumber(totalFeedRequiredKg)} kg</p>
+                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatWeight(totalFeedRequiredKg)} kg</p>
               </div>
               <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors flex justify-between items-center">
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider transition-colors">Feed Cost / kg Gain</p>
-                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatCurrency(inputs.feedCostPerTon / 1000 * inputs.fcr)}</p>
+                <p className="text-xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatCurrency(inputs.feedCostPerTon / 1000 * inputs.fcr, true)}</p>
               </div>
             </div>
           </div>

@@ -52,10 +52,12 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
   return [storedValue, setStoredValue] as const;
 }
 
-export function formatCurrency(value: number): string {
+export function formatCurrency(value: number, precise = false): string {
   return value.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
+    minimumFractionDigits: precise ? 2 : 0,
+    maximumFractionDigits: precise ? 2 : 0,
   });
 }
 
@@ -63,5 +65,26 @@ export function formatNumber(value: number): string {
   return value.toLocaleString('en-US', {
     minimumFractionDigits: 1,
     maximumFractionDigits: 1,
+  });
+}
+
+export function formatPercent(value: number): string {
+  return value.toLocaleString('en-US', {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  }) + '%';
+}
+
+export function formatWeight(value: number): string {
+  return value.toLocaleString('en-US', {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+}
+
+export function formatCount(value: number): string {
+  return value.toLocaleString('en-US', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   });
 }

@@ -52,13 +52,8 @@ export default function CostEstimator() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">System Type</label>
-                <select 
-                  name="systemType" 
-                  value={inputs.systemType} 
-                  onChange={handleInputChange}
-                  className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm focus:ring-2 focus:ring-teal-700 focus:border-teal-700 outline-none transition-colors"
-                >
+                <label htmlFor="systemType" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">System Type</label>
+                <select id="systemType" name="systemType" value={inputs.systemType} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm focus:ring-2 focus:ring-teal-700 focus:border-teal-700 outline-none transition-colors">
                   <option value="pond">Pond Culture</option>
                   <option value="tank">Tank Culture</option>
                   <option value="cage">Cage Culture</option>
@@ -67,44 +62,44 @@ export default function CostEstimator() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Units (Acres / m³)</label>
-                <input type="number" name="volumeSize" value={inputs.volumeSize} onChange={handleInputChange} min="0.1" step="0.1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="volumeSize" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Units (Acres / m³)</label>
+                <input id="volumeSize" type="number" name="volumeSize" value={inputs.volumeSize} onChange={handleInputChange} min="0.1" step="0.1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Stocking Density (per unit)</label>
-                <input type="number" name="stockingDensity" value={inputs.stockingDensity} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="stockingDensity" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Stocking Density (per unit)</label>
+                <input id="stockingDensity" type="number" name="stockingDensity" value={inputs.stockingDensity} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Fingerling Cost ($ each)</label>
-                <input type="number" name="fingerlingCost" value={inputs.fingerlingCost} onChange={handleInputChange} min="0" step="0.01" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="fingerlingCost" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Fingerling Cost ($ each)</label>
+                <input id="fingerlingCost" type="number" name="fingerlingCost" value={inputs.fingerlingCost} onChange={handleInputChange} min="0" step="0.01" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
             </div>
 
             <h2 className="text-xl font-medium text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-2 pt-4 transition-colors">Fixed Setup Costs</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Equipment Setup ($)</label>
-                <input type="number" name="equipmentCost" value={inputs.equipmentCost} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="equipmentCost" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Equipment Setup ($)</label>
+                <input id="equipmentCost" type="number" name="equipmentCost" value={inputs.equipmentCost} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Permits / Licenses ($)</label>
-                <input type="number" name="licensingCost" value={inputs.licensingCost} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="licensingCost" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Permits / Licenses ($)</label>
+                <input id="licensingCost" type="number" name="licensingCost" value={inputs.licensingCost} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
             </div>
 
             <h2 className="text-xl font-medium text-slate-900 dark:text-slate-100 border-b border-slate-100 dark:border-slate-800 pb-2 pt-4 transition-colors">Operational Overheads</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Energy / Mo ($)</label>
-                <input type="number" name="energyCostPerMonth" value={inputs.energyCostPerMonth} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="energyCostPerMonth" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Energy / Mo ($)</label>
+                <input id="energyCostPerMonth" type="number" name="energyCostPerMonth" value={inputs.energyCostPerMonth} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Labor / Mo ($)</label>
-                <input type="number" name="laborCostPerMonth" value={inputs.laborCostPerMonth} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="laborCostPerMonth" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Labor / Mo ($)</label>
+                <input id="laborCostPerMonth" type="number" name="laborCostPerMonth" value={inputs.laborCostPerMonth} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Cycle (Months)</label>
-                <input type="number" name="cycleLengthMonths" value={inputs.cycleLengthMonths} onChange={handleInputChange} min="1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="cycleLengthMonths" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Cycle (Months)</label>
+                <input id="cycleLengthMonths" type="number" name="cycleLengthMonths" value={inputs.cycleLengthMonths} onChange={handleInputChange} min="1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
             </div>
           </div>

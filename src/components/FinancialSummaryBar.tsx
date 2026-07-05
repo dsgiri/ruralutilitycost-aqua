@@ -37,7 +37,7 @@ export default function FinancialSummaryBar({
         <div className="flex-1 min-w-[120px] sm:border-l border-slate-200 dark:border-slate-800 sm:pl-4 transition-colors">
           <p className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider transition-colors">Breakeven $/kg</p>
           <p className="text-lg font-semibold text-slate-900 dark:text-slate-100 transition-colors">
-            {breakeven !== null ? formatCurrency(breakeven) : '-'}
+            {breakeven !== null ? formatCurrency(breakeven, true) : '-'}
           </p>
         </div>
       </div>

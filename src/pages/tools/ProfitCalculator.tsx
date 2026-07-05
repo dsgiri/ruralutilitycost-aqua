@@ -48,20 +48,20 @@ export default function ProfitCalculator() {
           <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 transition-colors">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Total Harvest Yield (kg)</label>
-                <input type="number" name="totalHarvestKg" value={inputs.totalHarvestKg} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="totalHarvestKg" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Total Harvest Yield (kg)</label>
+                <input id="totalHarvestKg" type="number" name="totalHarvestKg" value={inputs.totalHarvestKg} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Market Price ($/kg)</label>
-                <input type="number" name="marketPricePerKg" value={inputs.marketPricePerKg} onChange={handleInputChange} min="0" step="0.1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="marketPricePerKg" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Market Price ($/kg)</label>
+                <input id="marketPricePerKg" type="number" name="marketPricePerKg" value={inputs.marketPricePerKg} onChange={handleInputChange} min="0" step="0.1" className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Total Variable Cost ($)</label>
-                <input type="number" name="totalVariableCost" value={inputs.totalVariableCost} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="totalVariableCost" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Total Variable Cost ($)</label>
+                <input id="totalVariableCost" type="number" name="totalVariableCost" value={inputs.totalVariableCost} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Total Fixed/Overhead ($)</label>
-                <input type="number" name="totalFixedCost" value={inputs.totalFixedCost} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
+                <label htmlFor="totalFixedCost" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1 transition-colors">Total Fixed/Overhead ($)</label>
+                <input id="totalFixedCost" type="number" name="totalFixedCost" value={inputs.totalFixedCost} onChange={handleInputChange} className="w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border p-2.5 text-sm outline-none focus:ring-2 focus:ring-teal-700 focus:border-teal-700 transition-colors" />
               </div>
             </div>
           </div>
@@ -73,12 +73,12 @@ export default function ProfitCalculator() {
             <div className="grid grid-cols-1 gap-4">
               <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider mb-1 transition-colors">Breakeven Cost / kg</p>
-                <p className="text-2xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatCurrency(breakevenCostPerKg)}</p>
+                <p className="text-2xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatCurrency(breakevenCostPerKg, true)}</p>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 transition-colors">Cost to produce each kg.</p>
               </div>
               <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider mb-1 transition-colors">Minimum Sale Price</p>
-                <p className="text-2xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatCurrency(breakevenPrice)}</p>
+                <p className="text-2xl font-semibold text-slate-900 dark:text-slate-100 transition-colors">{formatCurrency(breakevenPrice, true)}</p>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 transition-colors">Price to avoid financial loss.</p>
               </div>
             </div>
