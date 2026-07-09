@@ -1,8 +1,12 @@
+import { useEffect } from 'react';
 import { formatCurrency, formatNumber, useLocalStorage } from '../../lib/utils';
+import { useToolCompleted } from '../../lib/useToolCompleted';
+import { trackEvent } from '../../lib/analytics';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import SEO from '../../components/SEO';
 import Disclaimer from '../../components/Disclaimer';
 import FinancialSummaryBar from '../../components/FinancialSummaryBar';
+import Methodology from '../../components/Methodology';
 
 interface SystemScenario {
   name: string;
@@ -18,6 +22,12 @@ export default function SystemComparison() {
     { name: 'Extensive Pond', setupCost: 8000, feedCost: 5000, laborEnergy: 3000, predictedYieldKg: 4000, expectedPrice: 5.50 },
     { name: 'Intensive RAS', setupCost: 45000, feedCost: 12000, laborEnergy: 15000, predictedYieldKg: 15000, expectedPrice: 6.00 },
   ]);
+
+  useToolCompleted('System Comparison', scenarios);
+
+  useEffect(() => {
+    trackEvent('system_comparison_used', { tool_name: 'System Comparison' });
+  }, []);
 
   const updateScenario = (index: number, field: keyof SystemScenario, value: number | string) => {
     const newScenarios = [...scenarios];
@@ -93,6 +103,20 @@ export default function SystemComparison() {
               ))}
             </div>
           </section>
+
+          <Methodology 
+            formula="Profit Advantage = (Scenario A Revenue - Scenario A Costs) - (Scenario B Revenue - Scenario B Costs)"
+            assumptions={[
+              "All scenarios are modeled over the exact same time horizon.",
+              "Capital expenditures (setup costs) are treated as fully realized in this cycle for breakeven calculations, though in reality they would be depreciated.",
+              "Revenue assumes 100% of yield is sold at the expected price."
+            ]}
+            workedExample={
+              <p>
+                Comparing a <strong>Pond</strong> (Yield 4,000kg, Price $5.50 = $22,000 Revenue; Total Cost $16,000; Profit = <strong>$6,000</strong>) to an <strong>Intensive RAS</strong> (Yield 15,000kg, Price $6.00 = $90,000 Revenue; Total Cost $72,000; Profit = <strong>$18,000</strong>). The RAS system yields a <code>$12,000</code> profit advantage but requires <code>$56,000</code> more in upfront and operating costs, representing higher financial risk.
+              </p>
+            }
+          />
         </div>
 
         {/* RIGHT COLUMN: Outputs */}

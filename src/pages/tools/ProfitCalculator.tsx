@@ -1,8 +1,10 @@
 import { ChangeEvent } from 'react';
 import { formatCurrency, formatNumber, useLocalStorage } from '../../lib/utils';
+import { useToolCompleted } from '../../lib/useToolCompleted';
 import SEO from '../../components/SEO';
 import Disclaimer from '../../components/Disclaimer';
 import FinancialSummaryBar from '../../components/FinancialSummaryBar';
+import Methodology from '../../components/Methodology';
 
 export default function ProfitCalculator() {
   const [inputs, setInputs] = useLocalStorage('aqua-profit-calculator-inputs', {
@@ -11,6 +13,8 @@ export default function ProfitCalculator() {
     totalVariableCost: 15000,
     totalFixedCost: 5000,
   });
+
+  useToolCompleted('Profit & Breakeven Tool', inputs);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -65,6 +69,20 @@ export default function ProfitCalculator() {
               </div>
             </div>
           </div>
+
+          <Methodology 
+            formula="Breakeven Cost = (Total Variable Cost + Total Fixed Cost) ÷ Total Harvest Yield"
+            assumptions={[
+              "All yield produced is successfully sold at the modeled market price (no post-harvest spoilage or rejection).",
+              "Variable and fixed costs capture all expenses associated with the cycle.",
+              "Gross margin calculates strictly revenue minus costs, not accounting for taxes or depreciation."
+            ]}
+            workedExample={
+              <p>
+                If your cycle yields <strong>4,000 kg</strong>, and you incur <strong>$15,000</strong> in variable costs plus <strong>$5,000</strong> in fixed overheads (total cost = $20,000), your breakeven cost to produce each kg is <code>$20,000 ÷ 4,000 = $5.00/kg</code>. If you sell at <strong>$6.50/kg</strong>, you clear $1.50 profit per kg.
+              </p>
+            }
+          />
         </div>
 
         <div className="w-full lg:w-[400px] space-y-6 pt-0 lg:pt-16">

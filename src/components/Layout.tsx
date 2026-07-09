@@ -64,10 +64,12 @@ export default function Layout() {
     { name: "Profit", path: "/tools/profit" },
     { name: "Compare", path: "/tools/compare" },
     { name: "Favorites", path: "/favorites" },
+    { name: "FAQ", path: "/faq" },
   ];
 
   const footerLinks = [
     { name: "About", path: "/about", external: false },
+    { name: "FAQ", path: "/faq", external: false },
     {
       name: "Contact",
       path: "https://www.ruralopstools.com/contact",

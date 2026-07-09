@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import About from './pages/About';
 import Legal from './pages/Legal';
+import FAQ from './pages/FAQ';
 import GenericPage from './pages/GenericPage';
 import NotFound from './pages/NotFound';
 
@@ -39,6 +40,7 @@ export default function App() {
 
             <Route path="about" element={<About />} />
             <Route path="legal" element={<Legal />} />
+            <Route path="faq" element={<FAQ />} />
             
             {/* Shared generic pages for Rural Ops Tools mapping */}
             <Route path="contact" element={<GenericPage title="Contact Us" />} />

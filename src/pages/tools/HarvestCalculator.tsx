@@ -1,8 +1,10 @@
 import { ChangeEvent } from 'react';
 import { formatWeight, formatCount, useLocalStorage } from '../../lib/utils';
+import { useToolCompleted } from '../../lib/useToolCompleted';
 import SEO from '../../components/SEO';
 import Disclaimer from '../../components/Disclaimer';
 import FinancialSummaryBar from '../../components/FinancialSummaryBar';
+import Methodology from '../../components/Methodology';
 
 export default function HarvestCalculator() {
   const [inputs, setInputs] = useLocalStorage('aqua-harvest-calculator-inputs', {
@@ -11,6 +13,8 @@ export default function HarvestCalculator() {
     survivalRate: 80, // %
     averageHarvestWeightKg: 0.8,
   });
+
+  useToolCompleted('Harvest & Survival Modeler', inputs);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -56,6 +60,21 @@ export default function HarvestCalculator() {
               </div>
             </div>
           </div>
+
+          <Methodology 
+            formula="Total Yield = (Units × Density × Survival Rate) × Target Harvest Weight"
+            assumptions={[
+              "Survival rate applies uniformly across all units.",
+              "Target harvest weight represents the average weight of the surviving population.",
+              "Culls or graded fish removed mid-cycle are either excluded from survival rate or factored into the average weight.",
+              "Mortality events are not concentrated near harvest (which would artificially skew average weight up)."
+            ]}
+            workedExample={
+              <p>
+                In a <strong>10-acre</strong> pond stocked at <strong>500 fish/acre</strong> (5,000 total), with an expected <strong>80% survival rate</strong>, you will have 4,000 surviving fish. If the target average harvest weight is <strong>0.8 kg</strong>, your total yield will be <code>4,000 × 0.8 = 3,200 kg</code>.
+              </p>
+            }
+          />
         </div>
 
         <div className="w-full lg:w-[400px] space-y-6 pt-0 lg:pt-16">

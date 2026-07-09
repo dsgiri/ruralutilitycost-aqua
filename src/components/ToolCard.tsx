@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Heart, ChevronRight } from 'lucide-react';
 import { Tool } from '../types';
 import { useFavorites } from '../lib/utils';
+import { trackEvent } from '../lib/analytics';
 
 interface ToolCardProps {
   tool: Tool;
@@ -50,6 +51,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
         </div>
         <Link 
           to={tool.path}
+          onClick={() => trackEvent('tool_launched', { tool_name: tool.title })}
           className="bg-teal-600 dark:bg-teal-700 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-teal-700 dark:hover:bg-teal-600 text-center w-full sm:w-auto flex-shrink-0 whitespace-nowrap transition-colors"
         >
           Launch Tool

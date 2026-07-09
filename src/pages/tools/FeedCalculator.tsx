@@ -1,8 +1,10 @@
 import { ChangeEvent } from 'react';
 import { formatCurrency, formatWeight, useLocalStorage } from '../../lib/utils';
+import { useToolCompleted } from '../../lib/useToolCompleted';
 import SEO from '../../components/SEO';
 import Disclaimer from '../../components/Disclaimer';
 import FinancialSummaryBar from '../../components/FinancialSummaryBar';
+import Methodology from '../../components/Methodology';
 
 export default function FeedCalculator() {
   const [inputs, setInputs] = useLocalStorage('aqua-feed-calculator-inputs', {
@@ -13,6 +15,8 @@ export default function FeedCalculator() {
     fcr: 1.5,
     feedCostPerTon: 1200,
   });
+
+  useToolCompleted('Feed & FCR Calculator', inputs);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -70,6 +74,21 @@ export default function FeedCalculator() {
               </div>
             </div>
           </div>
+
+          <Methodology 
+            formula="FCR = Total feed weight ÷ Total weight gained"
+            assumptions={[
+              "FCR remains constant throughout the modeled period.",
+              "Feed loss (uneaten feed) is accounted for within the FCR value.",
+              "Weight gain is calculated as target harvest weight minus initial stocking weight.",
+              "Survival rate applies uniformly before final harvest biomass is calculated."
+            ]}
+            workedExample={
+              <p>
+                If you stock <strong>1,000 fish</strong> and feed them <strong>70 lbs</strong> of feed in total, and their total weight goes from <strong>10 lbs</strong> to <strong>50 lbs</strong> (a gain of 40 lbs), your FCR is <code>70 ÷ 40 = 1.75</code>.
+              </p>
+            }
+          />
         </div>
 
         <div className="w-full lg:w-[400px] space-y-6 pt-0 lg:pt-16">

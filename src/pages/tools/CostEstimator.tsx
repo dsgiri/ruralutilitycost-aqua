@@ -1,8 +1,10 @@
 import { ChangeEvent } from 'react';
 import { formatCurrency, useLocalStorage } from '../../lib/utils';
+import { useToolCompleted } from '../../lib/useToolCompleted';
 import SEO from '../../components/SEO';
 import Disclaimer from '../../components/Disclaimer';
 import FinancialSummaryBar from '../../components/FinancialSummaryBar';
+import Methodology from '../../components/Methodology';
 
 export default function CostEstimator() {
   const [inputs, setInputs] = useLocalStorage('aqua-cost-estimator-inputs', {
@@ -16,6 +18,8 @@ export default function CostEstimator() {
     laborCostPerMonth: 500,
     cycleLengthMonths: 6,
   });
+
+  useToolCompleted('Aqua Cost Estimator', inputs);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -103,6 +107,21 @@ export default function CostEstimator() {
               </div>
             </div>
           </div>
+
+          <Methodology 
+            formula="Total Cost = (Equipment + Permits) + [ (Energy + Labor) × Cycle ] + (Density × Unit Volume × Fingerling Cost)"
+            assumptions={[
+              "All variable operational costs scale linearly with cycle length.",
+              "Equipment and permit costs are one-time initial outlays (fixed setup costs) applied entirely to the first cycle.",
+              "Fingerling mortality before stocking is zero (survival is handled in the Harvest Modeler).",
+              "Feed costs are excluded here as they are highly variable and calculated separately."
+            ]}
+            workedExample={
+              <p>
+                For a <strong>6-month</strong> cycle in a <strong>1-acre</strong> pond, stocking <strong>1,000 fingerlings/acre</strong> at <strong>$0.25</strong> each, with <strong>$5,000</strong> equipment, <strong>$500</strong> permits, and <strong>$650/mo</strong> overhead (energy + labor), the fixed cost is <code>$5,500</code>. Operating cost is <code>(1000 × $0.25) + ($650 × 6) = $4,150</code>. Total startup cost: <code>$9,650</code>.
+              </p>
+            }
+          />
         </div>
 
         <div className="w-full lg:w-[400px] space-y-6 pt-0 lg:pt-16">
